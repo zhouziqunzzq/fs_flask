@@ -1,3 +1,4 @@
 .idea/
 __pycache__/
 word2vec/
+*.7z

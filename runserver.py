@@ -4,6 +4,9 @@
 # @Author: harry
 # @Date  : 18-8-20 下午8:07
 # @Desc  : Run topic word to topic sentence generation model
+from gevent import monkey
+
+monkey.patch_all()
 import pandas as pd
 import sys
 import random
@@ -12,9 +15,7 @@ import numpy as np
 from flask import Flask, request, jsonify
 from gevent import pywsgi
 import configparser
-from gevent import monkey
 
-monkey.patch_all()
 app = Flask(__name__)
 model = None
 # dict_topic
