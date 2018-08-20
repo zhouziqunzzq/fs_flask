@@ -23,7 +23,7 @@ dict_topic = {0.0: '',
               1.0: '亲情', 1.1: '痛苦',
               2.0: '爱情', 2.1: '青春', 2.2: '失恋',
               3.0: '友情', 3.1: '兄弟', 3.2: '背叛',
-              4.0: '成功', 4.1: '坚持', 4.2: '告诫',
+              4.0: '成功', 4.1: '坚持',
               5.0: '失败', 5.1: '迷茫', 5.2: '艰难不易',
               6.0: '过去', 6.1: '回忆', 6.2: '成长',
               7.0: '将来',
@@ -40,8 +40,8 @@ def topic_generation(prime):
     # change theme
     theme_class = list(dict_topic.values())
     del theme_class[0]
-    theme_class[13] = '艰难'
-    theme_class[27] = '中国'
+    theme_class[12] = '艰难'
+    theme_class[26] = '中国'
     # read data
     data_topic = pd.read_csv('data_topic.csv')
 
