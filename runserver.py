@@ -66,14 +66,16 @@ def topic_generation(prime):
     return theme, data.loc[rand_index]['lyric'], True
 
 
-@app.route('/generate/first_sentence', methods=['GET'])
+@app.route('/generate/first_sentence', methods=['POST'])
 def generate_sentence():
-    # GET params
-    keyword = request.args.get('keyword', '')
+    if request.method == 'POST':
+        # POST params
+        keyword = str(request.form['keyword'])
 
-    rst_dict = {}
-    rst_dict['theme'], rst_dict['sentence'], rst_dict['result'] = topic_generation(keyword)
-    return jsonify(rst_dict)
+        rst_dict = dict()
+        rst_dict['theme'], rst_dict['sentence'], rst_dict['result'] = topic_generation(keyword)
+        return jsonify(rst_dict)
+    return 'POST method is required'
 
 
 if __name__ == "__main__":
