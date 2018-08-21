@@ -37,26 +37,29 @@ dict_topic = {0.0: '',
 
 
 def topic_generation(prime):
-    # change theme
     theme_class = list(dict_topic.values())
-    del theme_class[0]
-    theme_class[12] = '艰难'
-    theme_class[26] = '中国'
     # read data
     data_topic = pd.read_csv('data_topic.csv')
 
-    try:
-        similarity = [model.wv.similarity(prime, theme_class[i]) for i in range(len(theme_class))]
-    except KeyError:
-        return "", "", False
+    if prime not in theme_class:
+        del theme_class[0]
+        theme_class[12] = '艰难'
+        theme_class[26] = '中国'
 
-    max_similarity_index = np.argmax(similarity)
-    theme = theme_class[max_similarity_index]
+        try:
+            similarity = [model.wv.similarity(prime, theme_class[i]) for i in range(len(theme_class))]
+        except KeyError:
+            return "", "", False
 
-    if theme == '艰难':
-        theme = '艰难不易'
-    if theme == '中国':
-        theme = '中国风'
+        max_similarity_index = np.argmax(similarity)
+        theme = theme_class[max_similarity_index]
+
+        if theme == '艰难':
+            theme = '艰难不易'
+        if theme == '中国':
+            theme = '中国风'
+    else:
+        theme = prime
 
     data = data_topic[data_topic['topic'] == theme]
     data = data.reset_index(drop=True)
